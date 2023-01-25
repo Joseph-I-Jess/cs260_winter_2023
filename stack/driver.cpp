@@ -1,71 +1,39 @@
 #include <iostream>
 
-#include "node.cpp"
+#include "node.h"
+#include "stack.h"
 
 using std::cout;
 using std::endl;
 
-Node *push(int new_value, Node *parent) {
-    //create new node with value, point it to parent and return pointer to new object.
-    Node *new_node = new Node(new_value, parent);
-    return new_node;
-}
-
-Node *pop(Node *parent) {
-    if(parent == nullptr) {
-        return nullptr;
-    }
-    
-    Node *next = parent->next;
-    delete parent;
-    return next;
-}
+/*
+    ToDo:
+        Add destructor for Stack class!
+*/
 
 int main(int argc, char **argv) {
-    Node top(42, nullptr);
-    Node tail(24, nullptr);
-    Node *head_ptr = &top;
+    Stack<int> my_stack;
 
-    // cout << "top.value: " << top.value << endl;
-    cout << "top.next: " << top.next << endl;
-    // cout << "tail.value: " << tail.value << endl;
-    // cout << "tail.next: " << tail.next << endl;
+    cout << "test empty stack:\n";
+    cout << "my_stack.peek(): " << my_stack.peek() << endl;
+    cout << "my_stack.pop(): " << my_stack.pop() << endl;
 
-    top.next = &tail;
+    cout << "test push to verify it working:\n";
+    my_stack.push(42);
+    cout << "my_stack.peek(): " << my_stack.peek() << endl;
+    cout << "my_stack.pop(): " << my_stack.pop() << endl;
 
-    // cout << "top.value: " << top.value << endl;
-    cout << "top.next: " << top.next << endl;
-    // cout << "tail.value: " << tail.value << endl;
-    cout << "&tail: " << &tail << endl;
-    // cout << "tail.next: " << tail.next << endl;
+    cout << "test that pop actually does all the things it says it is going to\n";
+    cout << "my_stack.pop(): " << my_stack.pop() << endl;
 
-    cout << "top.next->value: " << top.next->value << endl;
-    cout << "head_ptr->next->value: " << head_ptr->next->value << endl;
+    cout << "test pushing two values on\n";
+    my_stack.push(24);
+    my_stack.push(25);
+    cout << "my_stack.peek(): " << my_stack.peek() << endl;
+    cout << "my_stack.pop(): " << my_stack.pop() << endl;
+    cout << "my_stack.peek(): " << my_stack.peek() << endl;
+    cout << "my_stack.pop(): " << my_stack.pop() << endl;
+    cout << "my_stack.peek(): " << my_stack.peek() << endl;
+    cout << "my_stack.pop(): " << my_stack.pop() << endl;
 
-    cout << "&head_ptr: " << &head_ptr << endl;
-    cout << "head_ptr: " << head_ptr << endl;
-
-    head_ptr = push(10, head_ptr);
-
-    cout << "&head_ptr: " << &head_ptr << endl;
-    cout << "head_ptr: " << head_ptr << endl;
-    cout << "head_ptr->value: " << head_ptr->value << endl << endl;
-
-    head_ptr = pop(head_ptr);
-
-    cout << "&head_ptr: " << &head_ptr << endl;
-    cout << "head_ptr: " << head_ptr << endl;
-    cout << "head_ptr->value: " << head_ptr->value << endl << endl;
-
-    head_ptr = pop(head_ptr);
-
-    cout << "&head_ptr: " << &head_ptr << endl;
-    cout << "head_ptr: " << head_ptr << endl;
-    cout << "head_ptr->value: " << head_ptr->value << endl << endl;
-
-    head_ptr = pop(head_ptr);
-
-    cout << "&head_ptr: " << &head_ptr << endl;
-    cout << "head_ptr: " << head_ptr << endl;
-    cout << "head_ptr->value: " << head_ptr->value << endl << endl;
 }

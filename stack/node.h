@@ -9,7 +9,7 @@ struct Node {
     Node *next;
 
     Node() {}
-    Node(int new_value, Node *new_next) {
+    Node(T new_value, Node *new_next) {
         this->value = new_value;
         this->next = new_next;
     }

@@ -9,14 +9,14 @@
 template <typename T>
 class Stack {
     public:
-        void push(T new_value)
+        void push(T new_value) // O(1)
         {
             //create new node with value, point it to top.
             Node<T> *new_node = new Node<T>(new_value, top);
             top = new_node;
         }
 
-        T pop() {
+        T pop() { // O(1)
             if(top == nullptr) {
                 return -1;
             }
@@ -34,12 +34,12 @@ class Stack {
             return result;
         }
 
-        T peek() {
-            if(top == nullptr) {
-                return -1;
+        T peek() { // O(1)
+            if(top == nullptr) { // O(1)
+                return -1; // O(1)
             }
 
-            return top->value;
+            return top->value; // O(1)
         }
 
         Stack() {

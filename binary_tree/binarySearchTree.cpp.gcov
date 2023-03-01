@@ -1,0 +1,291 @@
+        -:    0:Source:binarySearchTree.cpp
+        -:    0:Graph:driver.gcno
+        -:    0:Data:driver.gcda
+        -:    0:Runs:1
+        -:    0:Programs:1
+        -:    1:#include <iostream>
+        -:    2:
+        -:    3:#include "binary_tree_node.h"
+        -:    4:
+        -:    5:using std::cout;
+        -:    6:using std::endl;
+        -:    7:
+        -:    8:// class BinarySearchTree {
+        -:    9:// public:
+        -:   10://     BinarySearchTree() {
+        -:   11://         root = nullptr;
+        -:   12://     }
+        -:   13:
+        -:   14://     ~BinarySearchTree() {
+        -:   15://         destroyTree(root);
+        -:   16://     }
+        -:   17:
+        -:   18://     void insert(int value) {
+        -:   19://         if (root == nullptr) {
+        -:   20://             root = new BinaryTreeNode{value, nullptr, nullptr};
+        -:   21://         } else {
+        -:   22://             insertHelper(root, value);
+        -:   23://         }
+        -:   24://     }
+        -:   25:
+        -:   26://     bool search(int value) {
+        -:   27://         return searchHelper(root, value);
+        -:   28://     }
+        -:   29:
+        -:   30://     void remove(int value) {
+        -:   31://         removeHelper(root, value);
+        -:   32://     }
+        -:   33:
+        -:   34:// private:
+        -:   35://     BinaryTreeNode *root;
+        -:   36:
+        -:   37://     void destroyTree(BinaryTreeNode *node) {
+        -:   38://         if (node != nullptr) {
+        -:   39://             destroyTree(node->left);
+        -:   40://             destroyTree(node->right);
+        -:   41://             delete node;
+        -:   42://         }
+        -:   43://     }
+        -:   44:
+        -:   45://     void insertHelper(BinaryTreeNode *node, int value) {
+        -:   46://         if (value < node->value) {
+        -:   47://             if (node->left == nullptr) {
+        -:   48://                 node->left = new BinaryTreeNode{value, nullptr, nullptr};
+        -:   49://             } else {
+        -:   50://                 insertHelper(node->left, value);
+        -:   51://             }
+        -:   52://         } else {
+        -:   53://             if (node->right == nullptr) {
+        -:   54://                 node->right = new BinaryTreeNode{value, nullptr, nullptr};
+        -:   55://             } else {
+        -:   56://                 insertHelper(node->right, value);
+        -:   57://             }
+        -:   58://         }
+        -:   59://     }
+        -:   60:
+        -:   61://     bool searchHelper(BinaryTreeNode *node, int value) {
+        -:   62://         if (node == nullptr) {
+        -:   63://             return false;
+        -:   64://         } else if (value == node->value) {
+        -:   65://             return true;
+        -:   66://         } else if (value < node->value) {
+        -:   67://             return searchHelper(node->left, value);
+        -:   68://         } else {
+        -:   69://             return searchHelper(node->right, value);
+        -:   70://         }
+        -:   71://     }
+        -:   72:
+        -:   73://     void removeHelper(BinaryTreeNode *node, int value) {
+        -:   74://         if (node == nullptr) {
+        -:   75://             return;
+        -:   76://         }
+        -:   77:
+        -:   78://         if (value < node->value) {
+        -:   79://             removeHelper(node->left, value);
+        -:   80://         } else if (value > node->value) {
+        -:   81://             removeHelper(node->right, value);
+        -:   82://         } else {
+        -:   83://             // bug: does not update prent's pointer to node!
+        -:   84://             if (node->left == nullptr && node->right == nullptr) {
+        -:   85://                 delete node;
+        -:   86://                 node = nullptr;
+        -:   87://             } else if (node->left == nullptr) {
+        -:   88://                 BinaryTreeNode *temp = node;
+        -:   89://                 node = node->right;
+        -:   90://                 delete temp;
+        -:   91://             } else if (node->right == nullptr) {
+        -:   92://                 BinaryTreeNode *temp = node;
+        -:   93://                 node = node->left;
+        -:   94://                 delete temp;
+        -:   95://             } else {
+        -:   96://                 BinaryTreeNode *temp = findMin(node->right);
+        -:   97://                 node->value = temp->value;
+        -:   98://                 removeHelper(node->right, temp->value);
+        -:   99://             }
+        -:  100://         }
+        -:  101://     }
+        -:  102:
+        -:  103://     BinaryTreeNode *findMin(BinaryTreeNode *node) {
+        -:  104://         while (node->left != nullptr) {
+        -:  105://             node = node->left;
+        -:  106://         }
+        -:  107://         return node;
+        -:  108://     }
+        -:  109:// };
+        -:  110:
+        -:  111:// #include <iostream>
+        -:  112:
+        -:  113:// using namespace std;
+        -:  114:
+        -:  115:// struct BinaryTreeNode {
+        -:  116://     int value;
+        -:  117://     BinaryTreeNode *left;
+        -:  118://     BinaryTreeNode *right;
+        -:  119:// };
+        -:  120:
+        -:  121:class BinarySearchTree {
+        -:  122:public:
+function _ZN16BinarySearchTreeC1Ev called 1 returned 100% blocks executed 100%
+        1:  123:    BinarySearchTree() {
+        1:  124:        root = nullptr;
+        1:  125:    }
+        -:  126:
+function _ZN16BinarySearchTree6insertEi called 8 returned 100% blocks executed 100%
+        8:  127:    void insert(int value) {
+        8:  128:        root = insertHelper(root, value);
+call    0 returned 100%
+        8:  129:    }
+        -:  130:
+function _ZN16BinarySearchTree4findEi called 4 returned 100% blocks executed 100%
+        4:  131:    bool find(int value) {
+        4:  132:        return findHelper(root, value);
+call    0 returned 100%
+        -:  133:    }
+        -:  134:
+function _ZN16BinarySearchTree6removeEi called 1 returned 100% blocks executed 100%
+        1:  135:    void remove(int value) {
+        1:  136:        removeHelper(root, value);
+call    0 returned 100%
+        1:  137:    }
+        -:  138:
+        -:  139:    void inorderTraversal() {
+        -:  140:        inorderTraversalHelper(root);
+        -:  141:    }
+        -:  142:
+        -:  143:    void preorderTraversal() {
+        -:  144:        preorderTraversalHelper(root);
+        -:  145:    }
+        -:  146:
+        -:  147:    void postorderTraversal() {
+        -:  148:        postorderTraversalHelper(root);
+        -:  149:    }
+        -:  150:
+        -:  151:private:
+        -:  152:    BinaryTreeNode *root;
+        -:  153:
+function _ZN16BinarySearchTree12insertHelperEP14BinaryTreeNodei called 20 returned 100% blocks executed 100%
+       20:  154:    BinaryTreeNode *insertHelper(BinaryTreeNode *node, int value) {
+       20:  155:        if (node == nullptr) {
+branch  0 taken 35% (fallthrough)
+branch  1 taken 65%
+        7:  156:            node = new BinaryTreeNode;
+call    0 returned 100%
+        7:  157:            node->value = value;
+        7:  158:            node->left = nullptr;
+        7:  159:            node->right = nullptr;
+       13:  160:        } else if (value < node->value) {
+branch  0 taken 38% (fallthrough)
+branch  1 taken 62%
+        5:  161:            node->left = insertHelper(node->left, value);
+call    0 returned 100%
+        8:  162:        } else if (value > node->value) {
+branch  0 taken 88% (fallthrough)
+branch  1 taken 13%
+        7:  163:            node->right = insertHelper(node->right, value);
+call    0 returned 100%
+        -:  164:        }
+       20:  165:        return node;
+        -:  166:    }
+        -:  167:
+function _ZN16BinarySearchTree10findHelperEP14BinaryTreeNodei called 14 returned 100% blocks executed 100%
+       14:  168:    bool findHelper(BinaryTreeNode *node, int value) {
+       14:  169:        if (node == nullptr) {
+branch  0 taken 21% (fallthrough)
+branch  1 taken 79%
+        3:  170:            return false;
+        -:  171:        }
+       11:  172:        if (node->value == value) {
+branch  0 taken 9% (fallthrough)
+branch  1 taken 91%
+        1:  173:            return true;
+       10:  174:        } else if (value < node->value) {
+branch  0 taken 70% (fallthrough)
+branch  1 taken 30%
+        7:  175:            return findHelper(node->left, value);
+call    0 returned 100%
+        -:  176:        } else {
+        3:  177:            return findHelper(node->right, value);
+call    0 returned 100%
+        -:  178:        }
+        -:  179:    }
+        -:  180:
+function _ZN16BinarySearchTree12removeHelperERP14BinaryTreeNodei called 3 returned 100% blocks executed 53%
+        3:  181:    void removeHelper(BinaryTreeNode *&node, int value) {
+        3:  182:        if (node == nullptr) {
+branch  0 taken 0% (fallthrough)
+branch  1 taken 100%
+    #####:  183:            return;
+        -:  184:        }
+        3:  185:        if (value < node->value) {
+branch  0 taken 67% (fallthrough)
+branch  1 taken 33%
+        2:  186:            removeHelper(node->left, value);
+call    0 returned 100%
+        1:  187:        } else if (value > node->value) {
+branch  0 taken 0% (fallthrough)
+branch  1 taken 100%
+    #####:  188:            removeHelper(node->right, value);
+call    0 never executed
+        -:  189:        } else {
+        1:  190:            if (node->left == nullptr) {
+branch  0 taken 100% (fallthrough)
+branch  1 taken 0%
+        1:  191:                BinaryTreeNode *temp = node->right;
+        1:  192:                delete node;
+call    0 returned 100%
+        1:  193:                node = temp;
+    #####:  194:            } else if (node->right == nullptr) {
+branch  0 never executed
+branch  1 never executed
+    #####:  195:                BinaryTreeNode *temp = node->left;
+    #####:  196:                delete node;
+call    0 never executed
+    #####:  197:                node = temp;
+        -:  198:            } else {
+    #####:  199:                BinaryTreeNode *temp = findMin(node->right);
+call    0 never executed
+    #####:  200:                node->value = temp->value;
+    #####:  201:                removeHelper(node->right, temp->value);
+call    0 never executed
+        -:  202:            }
+        -:  203:        }
+        -:  204:    }
+        -:  205:
+function _ZN16BinarySearchTree7findMinEP14BinaryTreeNode called 0 returned 0% blocks executed 0%
+    #####:  206:    BinaryTreeNode *findMin(BinaryTreeNode *node) {
+    #####:  207:        while (node->left != nullptr) {
+branch  0 never executed
+branch  1 never executed
+    #####:  208:            node = node->left;
+        -:  209:        }
+    #####:  210:        return node;
+        -:  211:    }
+        -:  212:
+        -:  213:    void inorderTraversalHelper(BinaryTreeNode *node) {
+        -:  214:        if (node == nullptr) {
+        -:  215:            return;
+        -:  216:        }
+        -:  217:        inorderTraversalHelper(node->left);
+        -:  218:        cout << node->value << " ";
+        -:  219:        inorderTraversalHelper(node->right);
+        -:  220:    }
+        -:  221:
+        -:  222:    void preorderTraversalHelper(BinaryTreeNode *node) {
+        -:  223:        if (node == nullptr) {
+        -:  224:            return;
+        -:  225:        }
+        -:  226:        cout << node->value << " ";
+        -:  227:        preorderTraversalHelper(node->left);
+        -:  228:        preorderTraversalHelper(node->right);
+        -:  229:    }
+        -:  230:
+        -:  231:    void postorderTraversalHelper(BinaryTreeNode *node) {
+        -:  232:        if (node == nullptr) {
+        -:  233:            return;
+        -:  234:        }
+        -:  235:        postorderTraversalHelper(node->left);
+        -:  236:        postorderTraversalHelper(node->right);
+        -:  237:        cout << node->value << " ";
+        -:  238:    }
+        -:  239:};
+        -:  240:

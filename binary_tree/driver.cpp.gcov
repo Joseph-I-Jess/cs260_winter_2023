@@ -1,0 +1,168 @@
+        -:    0:Source:driver.cpp
+        -:    0:Graph:driver.gcno
+        -:    0:Data:driver.gcda
+        -:    0:Runs:1
+        -:    0:Programs:1
+        -:    1:// #include <cstdio> // not needed on some systems...
+        -:    2:#include <iostream>
+        -:    3:
+        -:    4://#include "binary_tree_node.h"
+        -:    5:#include "binarySearchTree.cpp" // poor practice 🙁
+        -:    6:
+        -:    7:using std::cout;
+        -:    8:using std::endl;
+        -:    9:
+function _Z16inOrderTraversalP14BinaryTreeNode called 0 returned 0% blocks executed 0%
+    #####:   10:void inOrderTraversal(BinaryTreeNode *current) {
+        -:   11:    //inOrderTraversal of left child, if it exists
+    #####:   12:    if(current->left != nullptr) {
+branch  0 never executed
+branch  1 never executed
+    #####:   13:        inOrderTraversal(current->left);
+call    0 never executed
+        -:   14:    }
+        -:   15:    //print value of self
+    #####:   16:    cout << current->value << ", ";
+call    0 never executed
+call    1 never executed
+        -:   17:    //inOrderTraversal of right child, if it exists
+    #####:   18:    if(current->right != nullptr) {
+branch  0 never executed
+branch  1 never executed
+    #####:   19:        inOrderTraversal(current->right);
+call    0 never executed
+        -:   20:    }
+    #####:   21:}
+        -:   22:
+function main called 1 returned 100% blocks executed 100%
+        1:   23:int main(int argc, char **argv) {
+        -:   24:    // BinaryTreeNode root{42, nullptr, nullptr};
+        -:   25:    // BinaryTreeNode left{21, nullptr, nullptr};
+        -:   26:    // BinaryTreeNode right{63, nullptr, nullptr};
+        -:   27:
+        -:   28:    // root.left = &left;
+        -:   29:    // root.right = &right;
+        -:   30:
+        -:   31:    // BinaryTreeNode ll{10, nullptr, nullptr};
+        -:   32:    // BinaryTreeNode lr{30, nullptr, nullptr};
+        -:   33:    // BinaryTreeNode rl{50, nullptr, nullptr};
+        -:   34:    // BinaryTreeNode rr{70, nullptr, nullptr};
+        -:   35:
+        -:   36:    // root.left->left = &ll;
+        -:   37:    // root.left->right = &lr;
+        -:   38:    // root.right->left = &rl;
+        -:   39:    // root.right->right = &rr;
+        -:   40:
+        -:   41:    // // print root values
+        -:   42:    // // cout << "root: {" << root.value << ", " << root.left << ", " << root.right << "}" << endl;
+        -:   43:    // printf("root: {%d, %#X, %#X}\n", root.value, root.left, root.right);
+        -:   44:
+        -:   45:    // // print root's children's values
+        -:   46:    // printf("root.left: {%d, %#X, %#X}\n", root.left->value, root.left->left, root.left->right);
+        -:   47:    // printf("root.right: {%d, %#X, %#X}\n", root.right->value, root.right->left, root.right->right);
+        -:   48:
+        -:   49:    // printf("root.left->left: {%d, %#X, %#X}\n", root.left->left->value, root.left->left->left, root.left->left->right);
+        -:   50:    // printf("root.left->right: {%d, %#X, %#X}\n", root.left->right->value, root.left->right->left, root.left->right->right);
+        -:   51:    // printf("root.right->left: {%d, %#X, %#X}\n", root.right->left->value, root.right->left->left, root.right->left->right);
+        -:   52:    // printf("root.right->right: {%d, %#X, %#X}\n", root.right->right->value, root.right->right->left, root.right->right->right);
+        -:   53:
+        -:   54:    // inOrderTraversal(&root);
+        -:   55:
+        1:   56:    BinarySearchTree bst;
+call    0 returned 100%
+        -:   57:
+        1:   58:    bst.insert(0);
+call    0 returned 100%
+branch  1 taken 100% (fallthrough)
+branch  2 taken 0% (throw)
+        1:   59:    bst.insert(32);
+call    0 returned 100%
+branch  1 taken 100% (fallthrough)
+branch  2 taken 0% (throw)
+        1:   60:    bst.insert(16);
+call    0 returned 100%
+branch  1 taken 100% (fallthrough)
+branch  2 taken 0% (throw)
+        1:   61:    bst.insert(-5);
+call    0 returned 100%
+branch  1 taken 100% (fallthrough)
+branch  2 taken 0% (throw)
+        1:   62:    bst.insert(-6);
+call    0 returned 100%
+branch  1 taken 100% (fallthrough)
+branch  2 taken 0% (throw)
+        1:   63:    bst.insert(-4);
+call    0 returned 100%
+branch  1 taken 100% (fallthrough)
+branch  2 taken 0% (throw)
+        1:   64:    bst.insert(64);
+call    0 returned 100%
+branch  1 taken 100% (fallthrough)
+branch  2 taken 0% (throw)
+        1:   65:    bst.insert(64);
+call    0 returned 100%
+branch  1 taken 100% (fallthrough)
+branch  2 taken 0% (throw)
+        -:   66:
+        -:   67:    // check if search works on present and absent values?
+        1:   68:    cout << "-6 in bst? " << bst.find(-6) << endl;
+call    0 returned 100%
+branch  1 taken 100% (fallthrough)
+branch  2 taken 0% (throw)
+call    3 returned 100%
+branch  4 taken 100% (fallthrough)
+branch  5 taken 0% (throw)
+call    6 returned 100%
+branch  7 taken 100% (fallthrough)
+branch  8 taken 0% (throw)
+call    9 returned 100%
+branch 10 taken 100% (fallthrough)
+branch 11 taken 0% (throw)
+        1:   69:    cout << "-7 in bst? " << bst.find(-7) << endl;
+call    0 returned 100%
+branch  1 taken 100% (fallthrough)
+branch  2 taken 0% (throw)
+call    3 returned 100%
+branch  4 taken 100% (fallthrough)
+branch  5 taken 0% (throw)
+call    6 returned 100%
+branch  7 taken 100% (fallthrough)
+branch  8 taken 0% (throw)
+call    9 returned 100%
+branch 10 taken 100% (fallthrough)
+branch 11 taken 0% (throw)
+        1:   70:    cout << "99 in bst? " << bst.find(99) << endl;
+call    0 returned 100%
+branch  1 taken 100% (fallthrough)
+branch  2 taken 0% (throw)
+call    3 returned 100%
+branch  4 taken 100% (fallthrough)
+branch  5 taken 0% (throw)
+call    6 returned 100%
+branch  7 taken 100% (fallthrough)
+branch  8 taken 0% (throw)
+call    9 returned 100%
+branch 10 taken 100% (fallthrough)
+branch 11 taken 0% (throw)
+        -:   71:
+        -:   72:    // remove a value and see if it was removed
+        1:   73:    bst.remove(-6);
+call    0 returned 100%
+branch  1 taken 100% (fallthrough)
+branch  2 taken 0% (throw)
+        1:   74:    cout << "-6 in bst? " << bst.find(-6) << endl;
+call    0 returned 100%
+branch  1 taken 100% (fallthrough)
+branch  2 taken 0% (throw)
+call    3 returned 100%
+branch  4 taken 100% (fallthrough)
+branch  5 taken 0% (throw)
+call    6 returned 100%
+branch  7 taken 100% (fallthrough)
+branch  8 taken 0% (throw)
+call    9 returned 100%
+branch 10 taken 100% (fallthrough)
+branch 11 taken 0% (throw)
+        -:   75:
+        1:   76:    return 0;
+        -:   77:}

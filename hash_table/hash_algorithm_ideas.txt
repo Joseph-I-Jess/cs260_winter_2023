@@ -1,0 +1,17 @@
+hash algorithm (watch the video for an explanation of the contents here!)
+
+n = number of buckets with values
+[][][][ bat->aaa->ab->c->m->an ][][][][][][ace]
+ 0 1 2             3 4 5 6 7 8    9  10 
+
+a  c  e => 9  //O(k) where k is length of string
+1 +3 + 5 = 9
+
+b  a  t => 23 % 10 = 3   23 / 10 = 2  R 3
+2 +1 +20 = 23
+
+a       a     a => 7
+1*1 + 1*2 + 1*4 = 7
+
+a       b => 5
+1*1   2*2

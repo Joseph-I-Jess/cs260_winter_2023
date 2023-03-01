@@ -1,3 +1,4 @@
+#pragma once
 
 // value
 // left and right (optional) children

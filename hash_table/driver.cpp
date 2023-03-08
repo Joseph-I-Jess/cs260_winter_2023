@@ -7,22 +7,37 @@ using std::endl;
 
 /*
     ToDo:
-        refactor to use an array instead of a vector?
-            or we manually track our own capacity and ignore the actual capacity of the vector so we can keep using the nice vector functions available to us?
+        xrefactor to use an array instead of a vector?
+            .or we manually track our own capacity and ignore the actual capacity of the vector so we can keep using the nice vector functions available to us?
+        Check out why collisions did not happen on main running with arguments "geeks for geeks"
 */
 
-int main() {
+int main(int argc, char **argv) {
     HashTable ht;
+    
+    cout << "There are " << argc << " command-line arguments." << endl;
+    for(int i = 1; i < argc; ++i) {
+        //cout << "argument " << i << ": "  << argv[i] << endl;
+        ht.insert(argv[i]);
+    }
 
-    // check initial capacity of default construction of hashTable
+
+    // we can get access to characters after the end of the string!
+    // for(int i = 0; i < 10; ++i) {
+    //     cout << "argument[1][" << i << "](char code): "  << argv[1][i] << "(" << (int)argv[1][i] << ")" << endl;
+    // }
+
+
+    // // check initial capacity of default construction of hashTable
     // cout << "ht.getCapacity(): " << ht.getCapacity() << endl;
 
-    // test a few hash values
-    // cout << "hash(\"ace\"): " << ht.hash("ace") << endl;
+    // // test a few hash values
     // cout << "hash(\"aaa\"): " << ht.hash("aaa") << endl;
-    // cout << "hash(\"jj\"): " << ht.hash("jj") << endl;
+    // cout << "hash(\"ace\"): " << ht.hash("ace") << endl;
+    // cout << "hash(\"joe\"): " << ht.hash("joe") << endl;
+    // cout << "hash(\"bob\"): " << ht.hash("bob") << endl;
 
-    // insert aaa, search for aaa, also search for a would-be collision value to see what is in that position
+    // // insert aaa, search for aaa, also search for a would-be collision value to see what is in that position
     // cout << "insert(\"aaa\"): " << (ht.insert("aaa") ? "collision detected" : "no collision detected") << endl;
     // cout << "search(\"aaa\"): " << "\"" << ht.search("aaa") << "\"" << endl;
     // cout << "search(\"ab\"): " << "\"" << ht.search("ab") << "\"" << endl;
@@ -55,10 +70,11 @@ int main() {
     // // insert some values
     // ht.insert("aaa");
     // ht.insert("ace");
-    ht.insert("joe");
+    // ht.insert("joe");
     // ht.insert("bob");
+    // ht.insert("cat");
 
-    cout << "search(\"joe\"): " << "\"" << ht.search("joe") << "\"" << endl;
+    // cout << "search(\"joe\"): " << "\"" << ht.search("joe") << "\"" << endl;
 
     // what are size, capacity, and fullness of our good table?
     cout << "ht.getSize(): " << ht.getSize() << endl;
@@ -66,9 +82,22 @@ int main() {
     cout << "ht.getFullness(): " << ht.getFullness() << endl;
 
     // how many collsions so far?
-    cout << "ht.getCollisions(): " << ht.getCollisions() << endl;
+    cout << "ht.getCollisionCount(): " << ht.getCollisionCount() << endl;
 
-    cout << "end of program, have a nice day!" << endl;
+    cout << "\n" << ht.toString() << endl;
+
+    cout << "\nNumerators on possibly useful statistics:" << endl;
+    cout << "\tinsert count: " << ht.getInsertCount() << endl;
+    cout << "\tsize: " << ht.getSize() << endl;
+
+    cout << "\nDenominator on possibly useful statistics:" << endl;
+    cout << "\tcollision count: " << ht.getCollisionCount() << endl;
+
+    cout << "\nPossibly useful statistics:" << endl;
+    cout << "\tsize / collision count: " << (float)ht.getSize() / ht.getCollisionCount() << endl;
+    cout << "\tinsert count / collision count: " << (float)ht.getInsertCount() / ht.getCollisionCount() << endl;
+
+    cout << "\nend of program, have a nice day!" << endl;
 
     return 0;
 }

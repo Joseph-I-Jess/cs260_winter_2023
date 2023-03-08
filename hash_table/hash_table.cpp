@@ -1,4 +1,5 @@
 #include <iostream>
+//#include <sstream> could use this instead of std::to_string on int to convert int to string
 
 #include "hash_table.h"
 
@@ -8,12 +9,13 @@ HashTable::HashTable() : HashTable(16) {
     // size = 0;
 }
 
-HashTable::HashTable(int initial_size) : size{0}, collisions{0} {
-    table.resize(initial_size, "");
-    // for(int i = 0; i < initial_size; ++i) {
-    //     table.push_back(""); // could use iota to use iterators to fill in those valuies instead...
-    // }
+HashTable::HashTable(int initial_size) : capacity{initial_size}, collisionCount{0}, insertCount{0}, size{0} {
+    table.reserve(initial_size);
+    for(int i = 0; i < initial_size; ++i) {
+        table.push_back(""); // could use iota to use iterators to fill in those valuies instead...
+    }
     //size = 0; // this could also be done with a "member initialization list", which can do references with parens ( ) or values with braces { }
+    //capacity = initial_size;
 }
 
 // Takes a string value, and places that value at the hashed location in our table, return if placement causes a collision.
@@ -23,19 +25,21 @@ bool HashTable::insert(string value) {
     // detect if a collision is about to occur, assume no collision, set collision variable if one is detected
     bool collision = false;
     // a collision is when the value in the table is not my proposed value and the position in the table is not empty (whatever empty means)
-    std::cout << "table[" << candidate_position << "]: " << "\"" << table.at(candidate_position) << "\"" << std::endl;
+    // std::cout << "table.at(" << candidate_position << "): " << "\"" << table.at(candidate_position) << "\"" << std::endl; //debug statement
     if(table.at(candidate_position) != value && table.at(candidate_position) != "") {
         collision = true;
-        collisions++;
+        collisionCount++;
     }
 
     // place in vector
-    table.insert(table.begin() + candidate_position, value);
+    table.at(candidate_position) = value;
 
     // update size variable if no collision has happened
     if(collision == false) {
         size++;
     }
+
+    insertCount++;
 
     // return if placement causes a collision
     return collision;
@@ -52,9 +56,9 @@ bool HashTable::remove(string value) {
     // find hash
     int candidate_position = hash(value);
     // check if value in table is the same as our proposed value and empty if so, do not empty otherwise!
-    if(table[candidate_position] == value) {
+    if(table.at(candidate_position) == value) {
         // remove value from table
-        table[candidate_position] = "";
+        table.at(candidate_position) = "";
         // update size!
         size--;
         return true;
@@ -78,19 +82,34 @@ int HashTable::hash(string value) {
 }
 
 //Helper function to fetch current capacity
-int HashTable::getCapacity() {return table.capacity();}
+int HashTable::getCapacity() {return capacity;}
 //Helper function to fetch current size
 int HashTable::getSize() {return size;}
 //Helper function to fetch current "fullness"
-int HashTable::getFullness() {
+float HashTable::getFullness() {
     int cap = getCapacity();
     float result = 0.0f;
     if(cap != 0) {
-        result = size / getCapacity();
+        result = (float)size / (float)cap;
     } else {
         result = -1;
     }
     return result;
 }
 
-float HashTable::getCollisions() {return collisions;}
+int HashTable::getInsertCount() {return insertCount;}
+int HashTable::getCollisionCount() {return collisionCount;}
+
+string HashTable::toString() {
+    string result = "[";
+
+    for(int key = 0; key < getCapacity(); ++key) {
+        if(table.at(key) != "") {
+            result += "(" + std::to_string(key) + ", " + table.at(key) + ")";
+        }
+    }
+
+    result += "]";
+
+    return result;
+}

@@ -20,11 +20,18 @@ class HashTable {
 
         int getCapacity();
         int getSize();
-        int getFullness();
-        float getCollisions();
+        float getFullness();
+
+        int getInsertCount();
+        int getCollisionCount();
+
+        string toString();
 
     private:
         vector<string> table;
         int size;
-        int collisions; // should we create a clearTable function, or maybe when we resize we could clear collisions?
+        int capacity;
+
+        int insertCount;
+        int collisionCount; // should we create a clearTable function, or maybe when we resize we could clear collisionCount?
 };

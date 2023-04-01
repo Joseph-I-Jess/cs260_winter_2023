@@ -1,2 +1,2 @@
 # cs260_winter_2023
-Stuff!
+Data Structures, winter 2023, Linn-Benton Community College
